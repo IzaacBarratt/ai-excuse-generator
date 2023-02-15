@@ -124,7 +124,6 @@ export default function Home() {
           </div>
         </div>
 
-        {isLoading && <p>Loading...</p>}
         <form onSubmit={onSubmit}>
 
           {selectElements}
@@ -132,6 +131,7 @@ export default function Home() {
           <input disabled={isLoading} className={styles.submit} type="submit" value="Justify your negligence" />
           <input disabled={isLoading} className={styles.submit} type="button" onClick={randomSubmit} value="Randomise" />
         </form>
+        {isLoading && <p>Loading...</p>}
         <div className={styles.result}>
           <h4>Result:</h4>{result}</div>
       </main>

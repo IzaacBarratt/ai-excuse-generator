@@ -57,7 +57,7 @@
   opacity: 1;
 }
 .main input[type="submit"] {
-  padding: 12px 0;
+  padding: 1rem 0;
   color: #fff;
   background-color: #10a37f;
   border: none;
@@ -88,7 +88,7 @@
 
 .main .submit {
   margin-top: 0.5rem;
-  padding: 12px 0;
+  padding: 1rem 0;
   color: #fff;
   background-color: rosybrown;
   border: none;

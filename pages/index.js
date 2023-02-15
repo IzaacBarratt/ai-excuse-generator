@@ -71,7 +71,7 @@ export default function Home() {
 
     const selectedValue = excuseBody[promptName]
 
-    return <div className={styles.selectionBox}>
+    return <div className={styles.selectionBox} key={"select-box-" + promptName}>
       <label>{label}</label>
       <Select
         key={label + '-select'}
@@ -98,11 +98,11 @@ export default function Home() {
     <div>
       <Head>
         <title>OpenAI Quickstart</title>
-        <link rel="icon" href="/dog.png" />
+        <link rel="icon" href="/friendship.webp" />
       </Head>
 
       <main className={styles.main}>
-        <img src="/dog.png" className={styles.icon} />
+        <img src="/friendship.webp" className={styles.icon} />
         <h3>Cancel on your friends</h3>
 
         <div className={styles.foreward}>

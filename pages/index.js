@@ -101,7 +101,7 @@ export default function Home() {
   function copyToClipboard() {
     // If no copy - don't do this
     if (result) {
-      navigator.clipboard.writeText(result);
+      navigator.clipboard.writeText(result.trim());
       toast.success('Copied to clipboard!');
     }
   }

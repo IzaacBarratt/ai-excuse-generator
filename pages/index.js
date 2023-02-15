@@ -4,6 +4,10 @@ import styles from "./index.module.css";
 import Select from 'react-select'
 import * as prompts from '../data/prompts';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 const selectOptions = Object.keys(prompts);
 
 function randomiseOptions() {
@@ -94,6 +98,14 @@ export default function Home() {
     </div>
   })
 
+  function copyToClipboard() {
+    // If no copy - don't do this
+    if (result) {
+      navigator.clipboard.writeText(result);
+      toast.success('Copied to clipboard!');
+    }
+  }
+
   return (
     <div>
       <Head>
@@ -132,9 +144,20 @@ export default function Home() {
           <input disabled={isLoading} className={styles.submit} type="button" onClick={randomSubmit} value="Randomise" />
         </form>
         {isLoading && <p>Loading...</p>}
-        <div className={styles.result}>
-          <h4>Result:</h4>{result}</div>
+        <div className={styles.result} onClick={copyToClipboard}>
+          <h4>Result:</h4>
+          
+          {result && 
+            <div>
+              <i>*Click to copy to clipboard*</i>
+              <p>
+                {result}
+              </p>
+            </div>
+          }
+        </div>
       </main>
+      <ToastContainer/>
     </div>
   );
 }

@@ -79,7 +79,16 @@
   margin-top: 40px;
   width: 100%;
   max-width: 500px;
-  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+}
+
+.main .result h4 {
+  margin-bottom: 0;
+}
+
+.main .result i {
+  font-size: 0.9rem;
+  opacity: 0.8;
 }
 
 .main .selectionBox {

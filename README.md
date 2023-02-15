@@ -1,6 +1,8 @@
-# OpenAI API Quickstart - Node.js example app
+# AI Excuse generator - Node.js example portfolio piece
 
-This is an example pet name generator app used in the OpenAI API [quickstart tutorial](https://beta.openai.com/docs/quickstart). It uses the [Next.js](https://nextjs.org/) framework with [React](https://reactjs.org/). Check out the tutorial or follow the instructions below to get set up.
+This was created off the back of the OpenAI API github [Open API Quickstart tutorial](https://github.com/openai/openai-quickstart-node). Well worth checking out if you haven't and has useful documentation for testing yourself.
+
+This was just my version of piggy-backing off to create a portfolio piece 🫡
 
 ## Setup
 
@@ -38,4 +40,4 @@ This is an example pet name generator app used in the OpenAI API [quickstart tut
    $ npm run dev
    ```
 
-You should now be able to access the app at [http://localhost:3000](http://localhost:3000)! For the full context behind this example app, check out the [tutorial](https://beta.openai.com/docs/quickstart).
+You should now be able to access the app at [http://localhost:3000](http://localhost:3000)!

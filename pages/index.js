@@ -80,7 +80,7 @@ export default function Home() {
             label: selectedValue.charAt(0).toUpperCase() + selectedValue.slice(1),
             value: selectedValue
           }
-        : null}
+          : null}
         options={options}
         onChange={(newVal) => {
           setExcuseBody(
@@ -88,7 +88,7 @@ export default function Home() {
               ...excuseBody,
               [promptName]: newVal.value
             }
-          )        
+          )
         }}
       />
     </div>
@@ -105,24 +105,24 @@ export default function Home() {
         <img src="/dog.png" className={styles.icon} />
         <h3>Cancel on your friends</h3>
 
-      <div className={styles.foreward}>
-        <h4>What is the best format for excuses? 💡</h4>
+        <div className={styles.foreward}>
+          <h4>What is the best format for excuses? 💡</h4>
 
 
-        <div className={styles['foreward-rules']}>
-          <h5>We believe in a 3 point structure.</h5>
-          <p>
-            <span className={styles['foreward-ruleHeading']}>Explanation</span>
-            : Hit the ground running, how am I letting you down?</p>
-          <p>
-            <span className={styles['foreward-ruleHeading']}>Excuse</span>
-            : Why I'm forced to let you down</p>
-          <p>
-            <span className={styles['foreward-ruleHeading']}>Flip the script</span>
-            : Gaslight, blame, or otherwise redirect any focus away from yourself 🫡
-          </p>          
+          <div className={styles['foreward-rules']}>
+            <h5>We believe in a 3 point structure.</h5>
+            <p>
+              <span className={styles['foreward-ruleHeading']}>Explanation</span>
+              : Hit the ground running, how am I letting you down?</p>
+            <p>
+              <span className={styles['foreward-ruleHeading']}>Excuse</span>
+              : Why I'm forced to let you down</p>
+            <p>
+              <span className={styles['foreward-ruleHeading']}>Flip the script</span>
+              : Gaslight, blame, or otherwise redirect any focus away from yourself 🫡
+            </p>
+          </div>
         </div>
-      </div>
 
         {isLoading && <p>Loading...</p>}
         <form onSubmit={onSubmit}>

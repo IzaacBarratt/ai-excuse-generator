@@ -9,7 +9,7 @@ function Hero() {
             </h1>
 
             <h2 className="pt-4 text-1xl opacity-80">
-                Making cancelling plans easier.<br />
+                Cancelling plans has never been easier.<br />
                 All the joy, none of the guilt.
             </h2>
         </div>

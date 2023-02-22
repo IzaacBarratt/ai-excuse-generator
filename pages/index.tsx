@@ -95,9 +95,9 @@ export default function Home() {
      
 
       <main className="relative max-w-md px-4 py-10 mx-auto">
-        <div className="absolute h-40 bg-green-700 rounded-full opacity-50 w-52 blur-2xl opacity-30 top-60" ></div>
-        <div className="absolute right-0 h-40 bg-green-700 rounded-full opacity-50 w-52 blur-2xl opacity-30 top-2/4" ></div>
-        <div className="absolute h-40 bg-green-700 rounded-full opacity-50 w-52 blur-2xl opacity-30 bottom-6" ></div>
+        <div className="absolute h-40 bg-green-700 rounded-full w-52 blur-2xl opacity-30 top-60 -left-10" ></div>
+        <div className="absolute right-0 h-40 bg-green-700 rounded-full w-52 blur-2xl opacity-30 top-2/4" ></div>
+        <div className="absolute h-40 bg-green-700 rounded-full w-52 blur-2xl opacity-30 bottom-6" ></div>
 
         <div className="relative">
         <Hero />
@@ -113,6 +113,15 @@ export default function Home() {
         />
         </div>
       </main>
+
+      <footer className="pb-10 font-thin text-white">
+          <div className="flex justify-center hover:cursor-pointer">
+            <p className="opacity-80">Built by</p>
+            <a className="ml-1" href="https://twitter.com/ijBarratt" target="_blank">
+              <p className="font-bold underline">Izaac 🫡</p>
+            </a>
+          </div>
+        </footer>
 
       <ToastContainer />
     </div>

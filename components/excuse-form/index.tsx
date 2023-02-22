@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from "react";
+import { FormEventHandler, MouseEventHandler, useState } from "react";
 import { InputActionMeta } from "react-select";
 import Select from "react-select";
 import { capitaliseString } from "../../utils/text";
@@ -37,7 +37,7 @@ export default function ExcuseForm<T>(props: ExcuseFormProps<T>) {
     })
   }
 
-  function randomSubmit(e) {
+  function randomSubmit() {
     const randomised: T = formOptions.reduce((total, curr, indx) => {
       const totalValues = curr.values.length - 1
       const randomIndex = Math.round(Math.random() * totalValues)
@@ -49,6 +49,11 @@ export default function ExcuseForm<T>(props: ExcuseFormProps<T>) {
     }, {} as T)
     onUpdate(randomised)
     onSubmit(randomised)
+  }
+
+  function submitForm(e) {
+    e.preventDefault();
+    onSubmit(selectedValues)
   }
 
   const selectElements = formOptions.map((option) => {
@@ -63,8 +68,7 @@ export default function ExcuseForm<T>(props: ExcuseFormProps<T>) {
       label: capitaliseString(n)
     }))
 
-
-    const selectedValue: string = (selectedValues) ? selectedValues[key] : null;
+    const selectedValue = (selectedValues) ? selectedValues[key] as string : null
 
     return <div className="mb-5" key={"select-box-" + key.toString()}>
       <label className="pb-2 mb-2 text-sm font-thin text-white spac">{label}</label>
@@ -97,7 +101,7 @@ export default function ExcuseForm<T>(props: ExcuseFormProps<T>) {
 
   return (
     <div className="px-4 py-4 mt-16 rounded-lg bg-highlight1">
-      <form id="form" onSubmit={(e, newValues) => onSubmit(newValues)}>
+      <form id="form" onSubmit={submitForm}>
         <div className="mb-8">
           {selectElements}
         </div>

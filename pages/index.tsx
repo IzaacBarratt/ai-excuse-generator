@@ -42,8 +42,10 @@ export default function Home() {
   // New options - you can supply a new value here or rely on existing state
   // this is done because state takes a second to update and API call will happen before if called together
   async function onSubmit(newOptions) {
+    console.log('--- options')
+    console.log(newOptions)
     setIsLoading(true)
-    setResult("");
+    // setResult("");
     // event.preventDefault();
     try {
       const response = await fetch("/api/generate", {
@@ -64,7 +66,6 @@ export default function Home() {
 
       setResult(data.result);
     } catch (error) {
-      // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
     } finally {
@@ -86,7 +87,7 @@ export default function Home() {
         <title>F my Friends</title>
         <link rel="icon" href="/friendship.webp" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet"></link>
       </Head>
 

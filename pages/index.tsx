@@ -33,7 +33,6 @@ const menuOptions: FormExcuseOption<PromptBody>[] = [
   }
 ]
 
-
 export default function Home() {
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false)
@@ -42,20 +41,14 @@ export default function Home() {
   // New options - you can supply a new value here or rely on existing state
   // this is done because state takes a second to update and API call will happen before if called together
   async function onSubmit(newOptions) {
-    console.log('--- options')
-    console.log(newOptions)
     setIsLoading(true)
-    // setResult("");
-    // event.preventDefault();
+
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-
-        // If using newOptions - use that to overwrite, else use state
-        // Used because refreshing state can take a few seconds 
         body: JSON.stringify(newOptions ?? excuseBody),
       });
 
@@ -67,7 +60,7 @@ export default function Home() {
       setResult(data.result);
     } catch (error) {
       console.error(error);
-      alert(error.message);
+      toast.error("Unable to betray friends 🤧")
     } finally {
       setIsLoading(false)
     }
@@ -89,6 +82,16 @@ export default function Home() {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet"></link>
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@ijbarratt" />
+        <meta name="twitter:creator" content="@ijbarratt" />
+        <meta property="og:url" content="https://fmyfriends.co" />
+        <meta property="og:title" content="Cancel on your ✌️friends✌️" />
+        <meta property="og:description" content="All the fun - none of the guilt. What did they ever do for you?" />
+        <meta property="og:image" content="https://fmyfriends.co/betrayal.jpeg" />
+
+        
       </Head>
 
      

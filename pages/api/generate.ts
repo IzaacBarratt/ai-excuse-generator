@@ -1,4 +1,5 @@
 import { Configuration, OpenAIApi } from "openai";
+import { PromptBody } from "../../types/prompts";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -20,7 +21,7 @@ export default async function (req, res) {
     justification,
     excuse,
     blame
-  } = req.body
+  } = req.body as PromptBody
 
   if (!planToCancel) {
     res.status(400).json({

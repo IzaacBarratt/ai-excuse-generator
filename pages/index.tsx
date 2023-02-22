@@ -78,7 +78,7 @@ export default function Home() {
     <div className="min-h-screen bg-bg-blue bg-hero-pattern">
       <Head>
         <title>F my Friends</title>
-        <link rel="icon" href="/friendship.webp" />
+        <link rel="icon" href="/block.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet"></link>
@@ -90,8 +90,6 @@ export default function Home() {
         <meta property="og:title" content="Cancel on your ✌️friends✌️" />
         <meta property="og:description" content="All the fun - none of the guilt. I mean, what did they ever do for you, anyway?" />
         <meta property="og:image" content="https://fmyfriends.co/no-access.jpg" />
-
-        
       </Head>
 
      

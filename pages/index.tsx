@@ -88,8 +88,8 @@ export default function Home() {
         <meta name="twitter:creator" content="@ijbarratt" />
         <meta property="og:url" content="https://fmyfriends.co" />
         <meta property="og:title" content="Cancel on your ✌️friends✌️" />
-        <meta property="og:description" content="All the fun - none of the guilt. What did they ever do for you?" />
-        <meta property="og:image" content="https://fmyfriends.co/betrayal.jpeg" />
+        <meta property="og:description" content="All the fun - none of the guilt. I mean, what did they ever do for you, anyway?" />
+        <meta property="og:image" content="https://fmyfriends.co/no-access.jpg" />
 
         
       </Head>

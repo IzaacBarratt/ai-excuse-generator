@@ -75,7 +75,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-bg-blue bg-hero-pattern">
+    <div className="flex flex-col justify-center min-h-screen bg-bg-blue bg-hero-pattern">
       <Head>
         <title>F my Friends</title>
         <link rel="icon" href="/block.png" />
@@ -92,29 +92,26 @@ export default function Home() {
         <meta property="og:image" content="https://fmyfriends.co/no-access.jpg" />
       </Head>
 
-     
-
-      <main className="relative max-w-md px-4 py-10 mx-auto">
+      <main className="relative w-full max-w-md px-4 py-10 mx-auto">
         <div className="absolute h-40 bg-green-700 rounded-full w-52 blur-2xl opacity-30 top-60 -left-10" ></div>
         <div className="absolute right-0 h-40 bg-green-700 rounded-full w-52 blur-2xl opacity-30 top-2/4" ></div>
         <div className="absolute h-40 bg-green-700 rounded-full w-52 blur-2xl opacity-30 bottom-6" ></div>
 
         <div className="relative">
-        <Hero />
-
-        <ExcuseForm
-          copyToClipboard={copyToClipboard}
-          onSubmit={onSubmit}
-          result={result}
-          formOptions={menuOptions}
-          isLoading={isLoading}
-          selectedValues={excuseBody}
-          onUpdate={(u) => setExcuseBody(u)}
-        />
+          <Hero />
+          <ExcuseForm
+            copyToClipboard={copyToClipboard}
+            onSubmit={onSubmit}
+            result={result}
+            formOptions={menuOptions}
+            isLoading={isLoading}
+            selectedValues={excuseBody}
+            onUpdate={(u) => setExcuseBody(u)}
+          />
         </div>
       </main>
 
-      <footer className="pb-10 font-thin text-white">
+      <footer className="pb-10 mt-auto font-thin text-white ">
           <div className="flex justify-center hover:cursor-pointer">
             <p className="opacity-80">Built by</p>
             <a className="ml-1" href="https://twitter.com/ijBarratt" target="_blank">

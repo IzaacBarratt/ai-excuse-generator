@@ -30,5 +30,5 @@ export const blame = [
     'they gaslight me by offering ration explanations to my problems',
     'never being the same since they got a boyfriend',
     'they always doubted my value and the quality of my ideas', // 'never supported my ideas'
-    'how their betrayal in thailand scarred me for life',
+    'they betrayed me in Thailand and it scarred me for life',
 ]

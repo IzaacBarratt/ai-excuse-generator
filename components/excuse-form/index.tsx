@@ -1,7 +1,7 @@
 import { FormEventHandler, MouseEventHandler, useState } from "react";
 import { InputActionMeta } from "react-select";
 import Select from "react-select";
-import { capitaliseString } from "../../utils/text";
+import { capitaliseString, randomFromArray } from "../../utils/text";
 import { FormExcuseOption } from '../../types/forms';
 
 type ExcuseFormProps<T> = {
@@ -38,13 +38,10 @@ export default function ExcuseForm<T>(props: ExcuseFormProps<T>) {
   }
 
   function randomSubmit() {
-    const randomised: T = formOptions.reduce((total, curr, indx) => {
-      const totalValues = curr.values.length - 1
-      const randomIndex = Math.round(Math.random() * totalValues)
-
+    const randomised: T = formOptions.reduce((total, curr) => {
       return {
         ...total,
-        [curr.key]: curr.values[randomIndex]
+        [curr.key]: randomFromArray(curr.values)
       }
     }, {} as T)
     onUpdate(randomised)

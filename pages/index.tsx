@@ -36,8 +36,13 @@ const menuOptions: FormExcuseOption<PromptBody>[] = [
 export default function Home() {
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false)
-  const [excuseBody, setExcuseBody] = useState<PromptBody>()
-
+  const [excuseBody, setExcuseBody] = useState<PromptBody>({
+    blame: prompts.blame[0],
+    planToCancel: prompts.planToCancel[0],
+    excuse: prompts.excuse[0],
+    justification: prompts.justification[0]
+  })
+  
   // New options - you can supply a new value here or rely on existing state
   // this is done because state takes a second to update and API call will happen before if called together
   async function onSubmit(newOptions) {

@@ -10,25 +10,25 @@ export const planToCancel = [
 ]
 
 export const excuse = [
-    "I'm being held hostage by my estate agent",
     "I just gave birth",
     "I was attacked in the street",
-    "The cost of living crisis is not a joke",
-    "I'm an alcoholic",
-    "I need help hiding a body",
-    "Bolivia won the world cup"
+    "I owe money to the Yakuza",
+    "I'm an aggressive alcoholic",
+    "Ryan Gosling still has my phone",
+    "I got my toothbrush stuck down my throat",
+    "I read a blog post telling me friendships are dead weight"
 ]
 
 export const justification = [
     "annoyed",
-    "angry",
     "sassy",
+    "traumatized"
 ]
 
 export const blame = [
-    'they\'re jealous drake flew me out',
-    'they always neglect me on my birthday',
+    'they are still jealous Drake flew me out',
+    'they gaslight me by offering ration explanations to my problems',
     'never being the same since they got a boyfriend',
-    'always doubted my value and the quality of my ideas', // 'never supported my ideas'
-    'how they betrayed me in thailand',
+    'they always doubted my value and the quality of my ideas', // 'never supported my ideas'
+    'how their betrayal in thailand scarred me for life',
 ]

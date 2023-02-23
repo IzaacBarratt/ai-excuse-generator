@@ -121,7 +121,7 @@ export default function ExcuseForm<T>(props: ExcuseFormProps<T>) {
         <div className="flex justify-between">
           <h3 className="text-2xl font-semibold">Result:</h3>
           {isLoading && <img className="h-6 pt-1" src="/loading.gif" />}
-          {result && <img className="h-6 mb-2 ml-auto" src="/clipboard.png" />}
+          {result && !isLoading && <img className="h-6 mb-2 ml-auto" src="/clipboard.png" />}
         </div>
 
 
@@ -130,7 +130,7 @@ export default function ExcuseForm<T>(props: ExcuseFormProps<T>) {
           (result) ? "" : "opacity-50"
         ].join(' ')}>
           {isLoading && <p>Betraying friends......</p>}
-          {result &&
+          {result && !isLoading &&
             <div>
               <p className="font-regular">
                 {result}

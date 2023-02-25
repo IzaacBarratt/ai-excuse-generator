@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ExcuseForm from "../components/excuse-form";
 import { FormExcuseOption } from "../types/forms";
 import { PromptBody } from "../types/prompts";
-
+import { WhatsappIcon, WhatsappShareButton } from "react-share"
 
 const menuOptions: FormExcuseOption<PromptBody>[] = [
   {
@@ -42,7 +42,7 @@ export default function Home() {
     excuse: prompts.excuse[0],
     justification: prompts.justification[0]
   })
-  
+
   // New options - you can supply a new value here or rely on existing state
   // this is done because state takes a second to update and API call will happen before if called together
   async function onSubmit(newOptions) {
@@ -113,17 +113,23 @@ export default function Home() {
             selectedValues={excuseBody}
             onUpdate={(u) => setExcuseBody(u)}
           />
+
+          {/* <WhatsappShareButton
+            url="url_to_share.com"
+          >
+            <WhatsappIcon/>
+          </WhatsappShareButton> */}
         </div>
       </main>
 
       <footer className="pb-10 mt-auto font-thin text-white ">
-          <div className="flex justify-center hover:cursor-pointer">
-            <p className="opacity-80">Built by</p>
-            <a className="ml-1" href="https://twitter.com/ijBarratt" target="_blank">
-              <p className="font-bold underline">Izaac 🫡</p>
-            </a>
-          </div>
-        </footer>
+        <div className="flex justify-center hover:cursor-pointer">
+          <p className="opacity-80">Built by</p>
+          <a className="ml-1" href="https://twitter.com/ijBarratt" target="_blank">
+            <p className="font-bold underline">Izaac 🫡</p>
+          </a>
+        </div>
+      </footer>
 
       <ToastContainer />
     </div>

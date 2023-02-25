@@ -69,7 +69,10 @@ export default function ExcuseForm<T>(props: ExcuseFormProps<T>) {
 
     return <div className="mb-5" key={"select-box-" + key.toString()}>
       <label className="pb-2 mb-2 text-sm font-thin text-white spac">{label}</label>
-      <Select
+      <input value={selectedValue || ""} onChange={(e) => sendUpdate({ [key]: e.target.value })}/>
+      
+      {/* </input> */}
+      {/* <Select
         isSearchable={false}
         key={label + '-select'}
         value={(selectedValue)
@@ -92,7 +95,7 @@ export default function ExcuseForm<T>(props: ExcuseFormProps<T>) {
       }} onMenuClose={function (): void {
         // Not implemented
       }}
-      />
+      /> */}
     </div>
   })
 

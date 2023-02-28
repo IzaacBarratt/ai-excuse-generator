@@ -92,7 +92,7 @@ Take care.`);
   }
 
   // Probalby dont need the fancy shit
-  async function onShareClick(e: MouseEventHandler<HTMLElement>) {
+  async function onShareClick() {
     // const excusePage = '' 
     // generate card
 

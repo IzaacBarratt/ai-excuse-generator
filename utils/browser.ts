@@ -10,6 +10,6 @@ export function isMobileOrTabletDevice() {
       )
     )
       check = true;
-  })(navigator.userAgent || navigator.vendor || window.opera);
+  })(navigator.userAgent || navigator.vendor || window['opera']);
   return check;
 }

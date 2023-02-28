@@ -104,13 +104,13 @@ Take care.`);
     const cardFile = new File([cardBlob], "excuse-image.png")
 
     alert(isMobileDevice)
-    alert(navigator.share)
+    alert(navigator.share != undefined)
 
     if (isMobileDevice && navigator.share) {
-      navigator.share({
-        text: result,
+      await navigator.share({
+        // text: result,
         title: 'Excuse for you',
-        url: 'fmyfriends.co',
+        // url: 'https://fmyfriends.co',
         files: [cardFile]
       })
     }

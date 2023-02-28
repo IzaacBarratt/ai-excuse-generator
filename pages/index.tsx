@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import * as prompts from '../data/prompts';
 import 'tailwindcss/tailwind.css';
 import Hero from '../components/hero'
@@ -10,6 +10,9 @@ import ExcuseForm from "../components/excuse-form";
 import { FormExcuseOption } from "../types/forms";
 import { PromptBody } from "../types/prompts";
 import { WhatsappIcon, WhatsappShareButton } from "react-share"
+import ShareMenu from "../components/share-menu";
+import { useMobileDevice } from "../hooks/ismobile";
+import { createCardOfResult } from "../utils/card";
 
 const menuOptions: FormExcuseOption<PromptBody>[] = [
   {
@@ -34,7 +37,12 @@ const menuOptions: FormExcuseOption<PromptBody>[] = [
 ]
 
 export default function Home() {
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState(`
+  Hey friend,
+
+I hope you're doing well. I wanted to let you know that I won't be able to attend your baby shower because I was attacked in the street. But don't worry, it's not your fault. I'm not going to let them gaslight me anymore by offering ration explanations to my problems.
+
+Take care.`);
   const [isLoading, setIsLoading] = useState(false)
   const [excuseBody, setExcuseBody] = useState<PromptBody>({
     blame: prompts.blame[0],
@@ -42,6 +50,10 @@ export default function Home() {
     excuse: prompts.excuse[0],
     justification: prompts.justification[0]
   })
+  const [isShareMenuOpen, setIsShareMenuOpen] = useState(false)
+  // const [shareMenuCoordinates, setShareMenuCooordinates] = useState({ x: 0, y: 0 })
+  const isMobileDevice = useMobileDevice()
+  const [cardImage, setCardImage] = useState<string>();
 
   // New options - you can supply a new value here or rely on existing state
   // this is done because state takes a second to update and API call will happen before if called together
@@ -79,8 +91,61 @@ export default function Home() {
     }
   }
 
+
+  // Probalby dont need the fancy shit
+  async function onShareClick(e: MouseEventHandler<HTMLElement>) {
+    // const excusePage = '' 
+    // generate card
+
+    const cardBlob = await createCardOfResult(result)
+    console.log(cardBlob)
+    const cardImage = URL.createObjectURL(cardBlob)
+    console.log(cardImage)
+    setCardImage(cardImage)
+    return;
+
+    
+
+    if (isMobileDevice && navigator.share) {
+      navigator.share({
+        text: result,
+        title: '',
+        url: ''
+      })
+    }
+
+    // const { offsetTop, offsetLeft } = e.target;
+
+    // let x = offsetLeft;
+
+    // const screenWidth = window.innerWidth;
+    // const allowedRightMargin = 200;
+    // if ((offsetLeft - screenWidth) < allowedRightMargin) {
+    //   x - 400;
+    // }
+
+    // setIsShareMenuOpen(true)
+    // setShareMenuCooordinates({ x, y: offsetTop + 40 })
+  }
+
+  function closeMenuIfOpen(e: MouseEventHandler<HTMLDivElement>) {
+    // Checks if share button is obj pressed
+    const shareButton = e.target.closest("#share-button")
+    const shareMenu = e.target.closest("#share-menu");
+
+    if (shareButton || shareMenu) {
+      console.log('so dont close')
+      return;
+    }
+
+    if (isShareMenuOpen) {
+      setIsShareMenuOpen(false)
+    }
+  }
+
+
   return (
-    <div className="flex flex-col justify-center min-h-screen bg-bg-blue bg-hero-pattern">
+    <div className="flex flex-col justify-center min-h-screen bg-bg-blue bg-hero-pattern" onClick={closeMenuIfOpen}>
       <Head>
         <title>F my Friends</title>
         <link rel="icon" href="/block.png" />
@@ -97,6 +162,7 @@ export default function Home() {
         <meta property="og:image" content="https://fmyfriends.co/no-access.jpg" />
       </Head>
 
+
       <main className="relative w-full max-w-md px-4 py-10 mx-auto">
         <div className="absolute h-40 bg-green-700 rounded-full w-52 blur-2xl opacity-30 top-60 -left-10" ></div>
         <div className="absolute right-0 h-40 bg-green-700 rounded-full w-52 blur-2xl opacity-30 top-2/4" ></div>
@@ -105,7 +171,7 @@ export default function Home() {
         <div className="relative">
           <Hero />
           <ExcuseForm
-            copyToClipboard={copyToClipboard}
+            onShareClick={onShareClick}
             onSubmit={onSubmit}
             result={result}
             formOptions={menuOptions}
@@ -113,14 +179,20 @@ export default function Home() {
             selectedValues={excuseBody}
             onUpdate={(u) => setExcuseBody(u)}
           />
+        </div>
+        {/* <ShareMenu
+          isOpen={isShareMenuOpen}
+          isMobile={false}
+          position={shareMenuCoordinates}
+          onCopyToClipboard={copyToClipboard}
+        /> */}
 
-          {/* <WhatsappShareButton
-            url="url_to_share.com"
-          >
-            <WhatsappIcon/>
-          </WhatsappShareButton> */}
+        <div className="p-3 bg-slate-50">
+        {cardImage && <img src={cardImage}/>|| <h1>no card</h1>}
         </div>
       </main>
+      
+      
 
       <footer className="pb-10 mt-auto font-thin text-white ">
         <div className="flex justify-center hover:cursor-pointer">

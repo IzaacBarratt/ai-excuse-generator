@@ -187,8 +187,6 @@ Take care.`);
         </div>
       </main>
       
-      
-
       <footer className="pb-10 mt-auto font-thin text-white ">
         <div className="flex justify-center hover:cursor-pointer">
           <p className="opacity-80">Built by</p>

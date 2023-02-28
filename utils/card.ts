@@ -23,7 +23,7 @@ export async function createCardOfResult(result: string): Promise<Blob> {
   ctx.strokeStyle = bgGradient;
   ctx.fillStyle = bgGradient;
   ctx.beginPath();
-  ctx.roundRect(0, 0, imageWidth, imageHeight, 20);
+  ctx.roundRect(0, 0, imageWidth, imageHeight);
   ctx.fill();
   ctx.stroke();
 
@@ -35,7 +35,6 @@ export async function createCardOfResult(result: string): Promise<Blob> {
     width,
   } = ctx.measureText(result);
 
-  //   canvas.height = actualBoundingBoxAscent + actualBoundingBoxDescent;
   let textSegments = [];
 
   if (width > imageWidth) {
@@ -80,13 +79,6 @@ export async function createCardOfResult(result: string): Promise<Blob> {
   } else {
     textSegments = [cleanString];
   }
-
-  // Take the larger of the width and the horizontal bounding box
-  // dimensions to try to prevent cropping of the text.
-  //   canvas.width = Math.max(
-  //     width,
-  //     Math.abs(actualBoundingBoxLeft) + actualBoundingBoxRight
-  //   );
 
   // Set the font again, since otherwise, it's not correctly set when filling.
   ctx.fillStyle = "white";

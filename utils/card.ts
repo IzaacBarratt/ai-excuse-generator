@@ -1,7 +1,7 @@
 export async function createCardOfResult(result: string): Promise<Blob> {
-  const imageWidth = 400;
-  const imageHeight = 400;
-  const padding = 20;
+  const imageWidth = 1080;
+  const imageHeight = 1080;
+  const padding = 60;
   const cleanString = result.replace("\n", "").trim();
 
   var canvas = document.createElement("canvas");
@@ -28,19 +28,14 @@ export async function createCardOfResult(result: string): Promise<Blob> {
   ctx.stroke();
 
   const font = "Rubik";
-  let fontSize = 20;
+  let fontSize = 60;
 
   ctx.font = `${fontSize}px "${font}"`;
   const {
-    // actualBoundingBoxLeft,
-    // actualBoundingBoxRight,
-    // actualBoundingBoxAscent,
-    // actualBoundingBoxDescent,
     width,
   } = ctx.measureText(result);
 
   //   canvas.height = actualBoundingBoxAscent + actualBoundingBoxDescent;
-  const fontHeight = 30;
   let textSegments = [];
 
   if (width > imageWidth) {
@@ -49,15 +44,16 @@ export async function createCardOfResult(result: string): Promise<Blob> {
 
     console.log(words.length);
 
-    if (words.length > 30) {
-      fontSize = 18;
-    }
-    if (words.length > 50) {
-      fontSize = 16;
-    }
     if (words.length > 90) {
-      fontSize = 14;
+        fontSize = fontSize - 20
+    } else 
+    if (words.length > 50) {
+        fontSize = fontSize - 10
+    } else
+    if (words.length > 30) {
+      fontSize = fontSize - 5;
     }
+    
     ctx.font = `${fontSize}px "${font}"`;
 
     let curLine = [];
@@ -96,6 +92,7 @@ export async function createCardOfResult(result: string): Promise<Blob> {
   ctx.fillStyle = "white";
   ctx.font = `${fontSize}px ${font}`;
   ctx.textBaseline = "top";
+  const fontHeight = fontSize + fontSize/2;
 
   //   ctx.fillText(result, padding, padding, imageWidth - padding * 2);
 
@@ -108,16 +105,16 @@ export async function createCardOfResult(result: string): Promise<Blob> {
     );
   });
 
-  //   const img = new Image(200, 200);
-
+  const tagWidth = 450;
+  const tagHeight = 100;
   const blob = await fetch("fmyfriends-tag.png").then((r) => r.blob());
   const imgBitmap = await createImageBitmap(blob);
   ctx.drawImage(
     imgBitmap,
     padding,
-    imageHeight - padding - 50,
-    imageWidth / 2,
-    50
+    imageHeight - padding - tagHeight,
+    tagWidth,
+    tagHeight,
   );
 
   return new Promise((resolve, reject) => {

@@ -103,9 +103,6 @@ Take care.`);
     setCardImage(cardImage)
     const cardFile = new File([cardBlob], "excuse-image.png")
 
-    alert(isMobileDevice)
-    alert(navigator.share != undefined)
-
     if (isMobileDevice && navigator.share) {
       await navigator.share({
         // text: result,
@@ -113,8 +110,10 @@ Take care.`);
         // url: 'https://fmyfriends.co',
         files: [cardFile]
       })
+    } else {
+      alert("Unable to share")
     }
-  }
+  } 
 
   // function closeMenuIfOpen(e: MouseEventHandler<HTMLDivElement>) {
   //   // Checks if share button is obj pressed
@@ -181,7 +180,7 @@ Take care.`);
           Whatsapp
         </WhatsappShareButton> */}
 
-        <div className="p-3 bg-slate-50">
+        <div className="p-3 ">
           <div className="relative">
         {cardImage && <img src={cardImage}/>|| <h1>no card</h1>}
         </div>

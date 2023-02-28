@@ -50,7 +50,7 @@ Take care.`);
     excuse: prompts.excuse[0],
     justification: prompts.justification[0]
   })
-  const [isShareMenuOpen, setIsShareMenuOpen] = useState(false)
+  // const [isShareMenuOpen, setIsShareMenuOpen] = useState(false)
   // const [shareMenuCoordinates, setShareMenuCooordinates] = useState({ x: 0, y: 0 })
   const isMobileDevice = useMobileDevice()
   const [cardImage, setCardImage] = useState<string>();
@@ -91,7 +91,6 @@ Take care.`);
     }
   }
 
-
   // Probalby dont need the fancy shit
   async function onShareClick(e: MouseEventHandler<HTMLElement>) {
     // const excusePage = '' 
@@ -102,50 +101,39 @@ Take care.`);
     const cardImage = URL.createObjectURL(cardBlob)
     console.log(cardImage)
     setCardImage(cardImage)
-    return;
+    const cardFile = new File([cardBlob], "excuse-image.png")
 
-    
+    alert(isMobileDevice)
+    alert(navigator.share)
 
     if (isMobileDevice && navigator.share) {
       navigator.share({
         text: result,
-        title: '',
-        url: ''
+        title: 'Excuse for you',
+        url: 'fmyfriends.co',
+        files: [cardFile]
       })
     }
-
-    // const { offsetTop, offsetLeft } = e.target;
-
-    // let x = offsetLeft;
-
-    // const screenWidth = window.innerWidth;
-    // const allowedRightMargin = 200;
-    // if ((offsetLeft - screenWidth) < allowedRightMargin) {
-    //   x - 400;
-    // }
-
-    // setIsShareMenuOpen(true)
-    // setShareMenuCooordinates({ x, y: offsetTop + 40 })
   }
 
-  function closeMenuIfOpen(e: MouseEventHandler<HTMLDivElement>) {
-    // Checks if share button is obj pressed
-    const shareButton = e.target.closest("#share-button")
-    const shareMenu = e.target.closest("#share-menu");
+  // function closeMenuIfOpen(e: MouseEventHandler<HTMLDivElement>) {
+  //   // Checks if share button is obj pressed
+  //   const shareButton = e.target.closest("#share-button")
+  //   const shareMenu = e.target.closest("#share-menu");
 
-    if (shareButton || shareMenu) {
-      console.log('so dont close')
-      return;
-    }
+  //   if (shareButton || shareMenu) {
+  //     console.log('so dont close')
+  //     return;
+  //   }
 
-    if (isShareMenuOpen) {
-      setIsShareMenuOpen(false)
-    }
-  }
+  //   if (isShareMenuOpen) {
+  //     setIsShareMenuOpen(false)
+  //   }
+  // }
 
 
   return (
-    <div className="flex flex-col justify-center min-h-screen bg-bg-blue bg-hero-pattern" onClick={closeMenuIfOpen}>
+    <div className="flex flex-col justify-center min-h-screen bg-bg-blue bg-hero-pattern" /*onClick={closeMenuIfOpen}*/>
       <Head>
         <title>F my Friends</title>
         <link rel="icon" href="/block.png" />
@@ -187,8 +175,16 @@ Take care.`);
           onCopyToClipboard={copyToClipboard}
         /> */}
 
+        {/* <WhatsappShareButton
+          url={}
+        >
+          Whatsapp
+        </WhatsappShareButton> */}
+
         <div className="p-3 bg-slate-50">
+          <div className="relative">
         {cardImage && <img src={cardImage}/>|| <h1>no card</h1>}
+        </div>
         </div>
       </main>
       

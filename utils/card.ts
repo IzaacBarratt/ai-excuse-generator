@@ -13,7 +13,6 @@ export async function createCardOfResult(result: string): Promise<Blob> {
   canvas.style.position = "absolute";
   canvas.style.border = "1px solid";
 
-  //   const canvas = new OffscreenCanvas(imageWidth, imageHeight);
   const ctx = canvas.getContext("2d");
 
   const bgGradient = ctx.createLinearGradient(0, 0, 0, imageHeight);
@@ -77,6 +76,8 @@ export async function createCardOfResult(result: string): Promise<Blob> {
   } else {
     textSegments = [cleanString];
   }
+
+  alert("everything but font")
 
   // Set the font again, since otherwise, it's not correctly set when filling.
   ctx.fillStyle = "white";

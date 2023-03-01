@@ -95,6 +95,7 @@ Take care.`);
   async function onShareClick() {
     try {
       alert('tell me this works or something man2')
+      alert('failing before somehow?')
       const cardBlob = await createCardOfResult(result)
       const cardImage = URL.createObjectURL(cardBlob)
       setCardImage(cardImage)

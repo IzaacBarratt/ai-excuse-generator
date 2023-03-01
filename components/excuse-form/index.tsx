@@ -7,7 +7,7 @@ import { FormExcuseOption } from '../../types/forms';
 type ExcuseFormProps<T> = {
   onSubmit: (update: T) => void,
   isLoading: boolean,
-  copyToClipboard: MouseEventHandler<HTMLElement>,
+  onShareClick: MouseEventHandler<HTMLElement>,
   result?: String,
   formOptions: FormExcuseOption<T>[],
   onUpdate: (update: T) => void,
@@ -19,7 +19,7 @@ export default function ExcuseForm<T>(props: ExcuseFormProps<T>) {
   const {
     result,
     isLoading,
-    copyToClipboard,
+    onShareClick,
     onSubmit,
     formOptions,
     onUpdate,
@@ -69,6 +69,8 @@ export default function ExcuseForm<T>(props: ExcuseFormProps<T>) {
 
     return <div className="mb-5" key={"select-box-" + key.toString()}>
       <label className="pb-2 mb-2 text-sm font-thin text-white spac">{label}</label>
+      {/* <input value={selectedValue || ""} onChange={(e) => sendUpdate({ [key]: e.target.value })}/> */}
+      
       <Select
         isSearchable={false}
         key={label + '-select'}
@@ -115,11 +117,11 @@ export default function ExcuseForm<T>(props: ExcuseFormProps<T>) {
         </div>
       </form>
 
-      <div id="result" className="mt-8 text-white" onClick={copyToClipboard}>
+      <div id="result" className="mt-8 text-white">
         <div className="flex justify-between">
           <h3 className="text-2xl font-semibold">Result:</h3>
           {isLoading && <img className="h-6 pt-1" src="/loading.gif" />}
-          {result && !isLoading && <img className="h-6 mb-2 ml-auto" src="/clipboard.png" />}
+          {result && !isLoading && <img onClick={onShareClick} id="share-button" className="h-6 mb-2 ml-auto" src="/share.png" />}
         </div>
 
 

@@ -101,6 +101,7 @@ Take care.`);
       const cardFile = new File([cardBlob], "excuse-image.png")
 
       if (isMobileDevice && navigator.share) {
+        alert(navigator.share)
         await navigator.share({
           title: 'It\'s not me... it\'s you',
           url: 'https://fmyfriends.co',

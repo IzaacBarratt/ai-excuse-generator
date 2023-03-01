@@ -99,6 +99,7 @@ Take care.`);
       const cardImage = URL.createObjectURL(cardBlob)
       setCardImage(cardImage)
       const cardFile = new File([cardBlob], "excuse-image.png")
+      alert("has made image and file is ready")
 
       if (isMobileDevice && navigator.share) {
         alert(navigator.share)

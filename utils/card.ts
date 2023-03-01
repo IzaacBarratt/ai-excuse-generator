@@ -108,6 +108,10 @@ export async function createCardOfResult(result: string): Promise<Blob> {
   );
 
   return new Promise((resolve, reject) => {
-    canvas.toBlob((n: Blob) => resolve(n));
+    try {
+        canvas.toBlob((n: Blob) => resolve(n));
+    } catch(e) { 
+        reject(e)
+    }   
   });
 }

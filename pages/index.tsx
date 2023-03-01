@@ -93,20 +93,24 @@ Take care.`);
 
   // Probalby dont need the fancy shit
   async function onShareClick() {
-    alert('try fi share')
-    const cardBlob = await createCardOfResult(result)
-    const cardImage = URL.createObjectURL(cardBlob)
-    setCardImage(cardImage)
-    const cardFile = new File([cardBlob], "excuse-image.png")
+    try {
+      const cardBlob = await createCardOfResult(result)
+      const cardImage = URL.createObjectURL(cardBlob)
+      setCardImage(cardImage)
+      const cardFile = new File([cardBlob], "excuse-image.png")
 
-    if (isMobileDevice && navigator.share) {
-      await navigator.share({
-        title: 'It\'s not me... it\'s you',
-        // url: 'https://fmyfriends.co',
-        files: [cardFile]
-      })
-    } else {
-      toast.error("Unable to load native share on this device")
+      if (isMobileDevice && navigator.share) {
+        await navigator.share({
+          // title: 'It\'s not me... it\'s you',
+          // url: 'https://fmyfriends.co',
+          files: [cardFile]
+        })
+      } else {
+        toast.error("Unable to load native share on this device")
+      }
+      
+    } catch (e) {
+      toast.error(e)
     }
   } 
 

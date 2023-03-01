@@ -93,25 +93,19 @@ Take care.`);
 
   // Probalby dont need the fancy shit
   async function onShareClick() {
-    // const excusePage = '' 
-    // generate card
-
     const cardBlob = await createCardOfResult(result)
-    console.log(cardBlob)
     const cardImage = URL.createObjectURL(cardBlob)
-    console.log(cardImage)
     setCardImage(cardImage)
     const cardFile = new File([cardBlob], "excuse-image.png")
 
     if (isMobileDevice && navigator.share) {
       await navigator.share({
-        // text: result,
-        title: 'Excuse for you',
+        // title: 'It\'s not me... it\'s you',
         // url: 'https://fmyfriends.co',
         files: [cardFile]
       })
     } else {
-      alert("Unable to share")
+      toast.error("Unable to load native share on this device")
     }
   } 
 

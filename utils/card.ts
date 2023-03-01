@@ -1,8 +1,11 @@
 export async function createCardOfResult(result: string): Promise<Blob> {
+    try {
   const imageWidth = 1080;
   const imageHeight = 1080;
   const padding = 60;
   const cleanString = result.replace("\n", "").trim();
+
+  alert('started thing')
 
   var canvas = document.createElement("canvas");
 
@@ -12,6 +15,8 @@ export async function createCardOfResult(result: string): Promise<Blob> {
   // canvas.style.zIndex = 8;
   canvas.style.position = "absolute";
   canvas.style.border = "1px solid";
+
+  alert('before context')
 
   const ctx = canvas.getContext("2d");
 
@@ -25,6 +30,8 @@ export async function createCardOfResult(result: string): Promise<Blob> {
   ctx.roundRect(0, 0, imageWidth, imageHeight);
   ctx.fill();
   ctx.stroke();
+
+  alert('made background')
 
   const font = "Rubik";
   let fontSize = 60;
@@ -115,4 +122,7 @@ export async function createCardOfResult(result: string): Promise<Blob> {
         reject(e)
     }   
   });
+} catch (e) {
+    alert(e)
+}
 }

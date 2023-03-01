@@ -1,18 +1,17 @@
 import Head from "next/head";
-import { MouseEventHandler, useState } from "react";
+import { useState } from "react";
 import * as prompts from '../data/prompts';
 import 'tailwindcss/tailwind.css';
 import Hero from '../components/hero'
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ExcuseForm from "../components/excuse-form";
 import { FormExcuseOption } from "../types/forms";
 import { PromptBody } from "../types/prompts";
-import { WhatsappIcon, WhatsappShareButton } from "react-share"
-import ShareMenu from "../components/share-menu";
 import { useMobileDevice } from "../hooks/ismobile";
 import { createCardOfResult } from "../utils/card";
+
+const isDebugMode = false;
 
 const menuOptions: FormExcuseOption<PromptBody>[] = [
   {
@@ -37,12 +36,7 @@ const menuOptions: FormExcuseOption<PromptBody>[] = [
 ]
 
 export default function Home() {
-  const [result, setResult] = useState(`
-  Hey friend,
-
-I hope you're doing well. I wanted to let you know that I won't be able to attend your baby shower because I was attacked in the street. But don't worry, it's not your fault. I'm not going to let them gaslight me anymore by offering ration explanations to my problems.
-
-Take care.`);
+  const [result, setResult] = useState();
   const [isLoading, setIsLoading] = useState(false)
   const [excuseBody, setExcuseBody] = useState<PromptBody>({
     blame: prompts.blame[0],
@@ -50,8 +44,6 @@ Take care.`);
     excuse: prompts.excuse[0],
     justification: prompts.justification[0]
   })
-  // const [isShareMenuOpen, setIsShareMenuOpen] = useState(false)
-  // const [shareMenuCoordinates, setShareMenuCooordinates] = useState({ x: 0, y: 0 })
   const isMobileDevice = useMobileDevice()
   const [cardImage, setCardImage] = useState<string>();
 
@@ -87,53 +79,41 @@ Take care.`);
     // If no copy - don't do this
     if (result) {
       navigator.clipboard.writeText(result.trim());
-      toast.success('Copied to clipboard!');
+      toast.success('Message copied to clipboard! 🫡');
     }
   }
 
   // Probalby dont need the fancy shit
   async function onShareClick() {
+    if (!isMobileDevice) {
+      copyToClipboard();
+      return;
+    }
+
     try {
       const cardBlob = await createCardOfResult(result)
       const cardImage = URL.createObjectURL(cardBlob)
       setCardImage(cardImage)
       const cardFile = new File([cardBlob], "excuse-image.png")
 
+      // Only share image or whatsapp won't allow you to use as image upload
       if (isMobileDevice && navigator.share) {
         await navigator.share({
           // title: 'It\'s not me... it\'s you',
-          // url: 'https://fmyfriends.co',
           files: [cardFile],
-          // text: 'Text value'
         })
       } else {
-        toast.error("Unable to load native share on this device")
+        // If unable to share message - nativly won't work, so just copy to clipboard
+        copyToClipboard();
       }
-      
-    } catch(e) {
-      alert("ERROR-")
+
+    } catch (e) {
       toast.error(e.message)
     }
-  } 
-
-  // function closeMenuIfOpen(e: MouseEventHandler<HTMLDivElement>) {
-  //   // Checks if share button is obj pressed
-  //   const shareButton = e.target.closest("#share-button")
-  //   const shareMenu = e.target.closest("#share-menu");
-
-  //   if (shareButton || shareMenu) {
-  //     console.log('so dont close')
-  //     return;
-  //   }
-
-  //   if (isShareMenuOpen) {
-  //     setIsShareMenuOpen(false)
-  //   }
-  // }
-
+  }
 
   return (
-    <div className="flex flex-col justify-center min-h-screen bg-bg-blue bg-hero-pattern" /*onClick={closeMenuIfOpen}*/>
+    <div className="flex flex-col justify-center min-h-screen bg-bg-blue bg-hero-pattern">
       <Head>
         <title>F my Friends</title>
         <link rel="icon" href="/block.png" />
@@ -168,26 +148,18 @@ Take care.`);
             onUpdate={(u) => setExcuseBody(u)}
           />
         </div>
-        {/* <ShareMenu
-          isOpen={isShareMenuOpen}
-          isMobile={false}
-          position={shareMenuCoordinates}
-          onCopyToClipboard={copyToClipboard}
-        /> */}
 
-        {/* <WhatsappShareButton
-          url={}
-        >
-          Whatsapp
-        </WhatsappShareButton> */}
+        {
+          /* Debugging to see cards created on mobile for sharing */
+          isDebugMode && <div className="p-3 ">
+            <div className="relative">
+              {cardImage && <img src={cardImage} /> || <h1>no card</h1>}
+            </div>
+          </div>
+        }
 
-        <div className="p-3 ">
-          <div className="relative">
-        {cardImage && <img src={cardImage}/>|| <h1>no card</h1>}
-        </div>
-        </div>
       </main>
-      
+
       <footer className="pb-10 mt-auto font-thin text-white ">
         <div className="flex justify-center hover:cursor-pointer">
           <p className="opacity-80">Built by</p>

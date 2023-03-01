@@ -5,8 +5,6 @@ export async function createCardOfResult(result: string): Promise<Blob> {
     const padding = 60;
     const cleanString = result.replace("\n", "").trim();
 
-    alert("started thing");
-
     var canvas = document.createElement("canvas");
 
     canvas.id = "CursorLayer";
@@ -15,8 +13,6 @@ export async function createCardOfResult(result: string): Promise<Blob> {
     // canvas.style.zIndex = 8;
     canvas.style.position = "absolute";
     canvas.style.border = "1px solid";
-
-    alert("before context");
 
     const ctx = canvas.getContext("2d");
 
@@ -78,8 +74,6 @@ export async function createCardOfResult(result: string): Promise<Blob> {
       textSegments = [cleanString];
     }
 
-    alert("everything but font");
-
     // Set the font again, since otherwise, it's not correctly set when filling.
     ctx.fillStyle = "white";
     ctx.font = `${fontSize}px ${font}`;
@@ -97,9 +91,9 @@ export async function createCardOfResult(result: string): Promise<Blob> {
       );
     });
 
-    const tagWidth = 450;
-    const tagHeight = 100;
-    const blob = await fetch("fmyfriends-tag.png").then((r) => r.blob());
+    const tagWidth = 430;
+    const tagHeight = 75;
+    const blob = await fetch("fmyfriends-tag_no-bg.png").then((r) => r.blob());
     const imgBitmap = await createImageBitmap(blob);
     ctx.drawImage(
       imgBitmap,

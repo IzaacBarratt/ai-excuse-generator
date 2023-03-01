@@ -36,7 +36,7 @@ const menuOptions: FormExcuseOption<PromptBody>[] = [
 ]
 
 export default function Home() {
-  const [result, setResult] = useState();
+  const [result, setResult] = useState('');
   const [isLoading, setIsLoading] = useState(false)
   const [excuseBody, setExcuseBody] = useState<PromptBody>({
     blame: prompts.blame[0],

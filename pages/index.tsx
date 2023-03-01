@@ -94,7 +94,7 @@ Take care.`);
   // Probalby dont need the fancy shit
   async function onShareClick() {
     try {
-      alert('tell me this works or something man')
+      alert('tell me this works or something man2')
       const cardBlob = await createCardOfResult(result)
       const cardImage = URL.createObjectURL(cardBlob)
       setCardImage(cardImage)
@@ -104,7 +104,8 @@ Take care.`);
         await navigator.share({
           title: 'It\'s not me... it\'s you',
           url: 'https://fmyfriends.co',
-          files: [cardFile]
+          files: [cardFile],
+          text: 'Text value'
         })
       } else {
         toast.error("Unable to load native share on this device")

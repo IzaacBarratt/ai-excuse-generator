@@ -101,7 +101,7 @@ Take care.`);
 
       if (isMobileDevice && navigator.share) {
         await navigator.share({
-          // title: 'It\'s not me... it\'s you',
+          title: 'It\'s not me... it\'s you',
           // url: 'https://fmyfriends.co',
           files: [cardFile]
         })

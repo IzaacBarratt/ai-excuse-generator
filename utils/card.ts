@@ -41,8 +41,6 @@ export async function createCardOfResult(result: string): Promise<Blob> {
     const maxTextAllowedWidth = imageWidth - padding * 2;
     const words = cleanString.split(" ");
 
-    console.log(words.length);
-
     if (words.length > 90) {
         fontSize = fontSize - 20
     } else 

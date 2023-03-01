@@ -93,6 +93,7 @@ Take care.`);
 
   // Probalby dont need the fancy shit
   async function onShareClick() {
+    alert('try fi share')
     const cardBlob = await createCardOfResult(result)
     const cardImage = URL.createObjectURL(cardBlob)
     setCardImage(cardImage)
@@ -100,7 +101,7 @@ Take care.`);
 
     if (isMobileDevice && navigator.share) {
       await navigator.share({
-        // title: 'It\'s not me... it\'s you',
+        title: 'It\'s not me... it\'s you',
         // url: 'https://fmyfriends.co',
         files: [cardFile]
       })

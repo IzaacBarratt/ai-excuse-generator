@@ -1,4 +1,4 @@
-# AI Excuse generator - Node.js example portfolio piece
+# AI Excuse generator - Portfolio piece template
 
 This was created off the back of the OpenAI API github [Open API Quickstart tutorial](https://github.com/openai/openai-quickstart-node). Well worth checking out if you haven't and has useful documentation for testing yourself.
 
@@ -41,3 +41,14 @@ This was just my version of piggy-backing off to create a portfolio piece 🫡
    ```
 
 You should now be able to access the app at [http://localhost:3000](http://localhost:3000)!
+
+## How to use this template
+
+The whole point of this template is that you create your **OWN** version, you need something that shows personality and lets you flex your particular coding skills.
+
+- Can you make something specific to the job role you're looking for?
+- What are your personal interests?
+- Is there a technology you're trying to get hired in, can you integrate it here?
+
+[Guide on building portfolio pieces](https://youtu.be/pyUbuIAg8CE?t=393)
+![Youtube video image](https://fmyfriends.co/readme-youtube.png)
